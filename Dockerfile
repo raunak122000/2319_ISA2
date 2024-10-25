@@ -11,3 +11,5 @@ COPY application.py /opt/app/application.py
 
 # Set the environment variable for the Flask app and run it
 CMD FLASK_APP=/opt/app/application.py flask run 
+
+CMD FLASK_APP=/opt/app/application.py flask run --host=0.0.0.0
