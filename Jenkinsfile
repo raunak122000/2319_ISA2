@@ -2,7 +2,7 @@
 pipeline {
     agent any
 
-    // stages {
+     stages {
     //     stage('Clone Repository') {
     //         steps {
     //             git 'https://github.com/raunak122000/2319_ISA2.git'
