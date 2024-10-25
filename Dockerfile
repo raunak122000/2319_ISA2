@@ -1,15 +1,17 @@
-# Dockerfile2319
-
 FROM ubuntu:latest
 
-# Install Python and Flask
-RUN apt-get update && apt-get install -y python3 python3-pip
-RUN pip3 install flask
+RUN apt-get update && apt-get install -y python3 python3-pip python3-venv
 
-# Copy application.py to the /opt/app directory
-COPY application.py /opt/app/application.py
+RUN python3 -m venv /opt/venv
 
-# Set the environment variable for the Flask app and run it
-CMD FLASK_APP=/opt/app/application.py flask run 
+RUN /opt/venv/bin/pip install flask
 
-CMD FLASK_APP=/opt/app/application.py flask run --host=0.0.0.0
+RUN mkdir -p /opt/app
+
+COPY application.py /opt/app/
+
+WORKDIR /opt/app
+
+ENV PATH="/opt/venv/bin:$PATH"
+
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
